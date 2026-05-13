@@ -1,0 +1,15 @@
+# Jupyter
+.ipynb_checkpoints/
+.virtual_documents/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.python-version
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
