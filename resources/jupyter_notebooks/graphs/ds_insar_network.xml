@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <version>1.0</version>
+  <node id="Read">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\ds_insar_phaselinked.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Elevation">
+    <operator>AddElevation</operator>
+    <sources>
+      <sourceProduct refid="Read"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <demName>Copernicus 30m Global DEM</demName>
+      <demResamplingMethod>BICUBIC_INTERPOLATION</demResamplingMethod>
+      <elevationBandName>elevation</elevationBandName>
+      <externalDEMFile/>
+      <externalDEMNoDataValue>0</externalDEMNoDataValue>
+    </parameters>
+  </node>
+  <node id="Network">
+    <operator>MultiMasterInSAR</operator>
+    <sources>
+      <sourceProduct refid="Elevation"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <cohWindowAz>3</cohWindowAz>
+      <cohWindowRg>10</cohWindowRg>
+      <includeIncidenceAngle>true</includeIncidenceAngle>
+      <includeLatLon>true</includeLatLon>
+      <includeWavenumber>true</includeWavenumber>
+      <orbitDegree>4</orbitDegree>
+      <pairs>04Jan2021-10Jan2021,10Jan2021-16Jan2021,16Jan2021-22Jan2021,22Jan2021-28Jan2021,28Jan2021-03Feb2021,03Feb2021-09Feb2021,09Feb2021-15Feb2021,15Feb2021-21Feb2021,21Feb2021-27Feb2021,27Feb2021-05Mar2021,05Mar2021-11Mar2021</pairs>
+    </parameters>
+  </node>
+  <node id="Write">
+    <operator>Write</operator>
+    <sources>
+      <sourceProduct refid="Network"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <clearCacheAfterRowWrite>false</clearCacheAfterRowWrite>
+      <deleteOutputOnFailure>true</deleteOutputOnFailure>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\ds_insar_network.dim</file>
+      <formatName>BEAM-DIMAP</formatName>
+      <writeEntireTileRows>false</writeEntireTileRows>
+    </parameters>
+  </node>
+</graph>
