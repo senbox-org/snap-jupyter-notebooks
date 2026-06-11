@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <version>1.0</version>
+  <node id="ReadS2">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\snap_nb_sar_optical_s2.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="ReadS1">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\snap_nb_sar_optical_s1.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Collocate">
+    <operator>Collocate</operator>
+    <sources>
+      <reference refid="ReadS2"/>
+      <source.1 refid="ReadS1"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <copySecondaryMetadata>false</copySecondaryMetadata>
+      <referenceComponentPattern>${ORIGINAL_NAME}_M</referenceComponentPattern>
+      <referenceProductName/>
+      <renameReferenceComponents>false</renameReferenceComponents>
+      <renameSecondaryComponents>true</renameSecondaryComponents>
+      <resamplingType>BILINEAR_INTERPOLATION</resamplingType>
+      <secondaryComponentPattern>${ORIGINAL_NAME}_S1</secondaryComponentPattern>
+      <sourceProductPaths/>
+      <targetProductName>_collocated</targetProductName>
+      <targetProductType>COLLOCATED</targetProductType>
+    </parameters>
+  </node>
+  <node id="Write">
+    <operator>Write</operator>
+    <sources>
+      <sourceProduct refid="Collocate"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <clearCacheAfterRowWrite>false</clearCacheAfterRowWrite>
+      <deleteOutputOnFailure>true</deleteOutputOnFailure>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\snap_nb_sar_optical_collocated.dim</file>
+      <formatName>BEAM-DIMAP</formatName>
+      <writeEntireTileRows>false</writeEntireTileRows>
+    </parameters>
+  </node>
+</graph>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <version>1.0</version>
+  <node id="Read_ref">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\data\S1A_IW_SLC__1SDV_20230729T165635_20230729T165702_049641_05F820.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="ETAD_ref">
+    <operator>S1-ETAD-Correction</operator>
+    <sources>
+      <sourceProduct refid="Read_ref"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bistaticShiftCorrectionAz>false</bistaticShiftCorrectionAz>
+      <dopplerShiftCorrectionRg>false</dopplerShiftCorrectionRg>
+      <etadFile>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\data\S1A_IW_ETA__AXDV_20230729T165635_20230729T165702_049641_05F820_BAEE.SAFE\manifest.safe</etadFile>
+      <fmMismatchCorrectionAz>false</fmMismatchCorrectionAz>
+      <geodeticCorrectionAz>false</geodeticCorrectionAz>
+      <geodeticCorrectionRg>false</geodeticCorrectionRg>
+      <ionosphericCorrectionRg>false</ionosphericCorrectionRg>
+      <outputPhaseCorrections>false</outputPhaseCorrections>
+      <resamplingImage>true</resamplingImage>
+      <resamplingType>BISINC_5_POINT_INTERPOLATION</resamplingType>
+      <sourceBandNames/>
+      <sumOfAzimuthCorrections>true</sumOfAzimuthCorrections>
+      <sumOfRangeCorrections>true</sumOfRangeCorrections>
+      <troposphericCorrectionRg>false</troposphericCorrectionRg>
+    </parameters>
+  </node>
+  <node id="Read_sec">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\data\S1A_IW_SLC__1SDV_20230810T165635_20230810T165702_049816_05FDAB.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="ETAD_sec">
+    <operator>S1-ETAD-Correction</operator>
+    <sources>
+      <sourceProduct refid="Read_sec"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bistaticShiftCorrectionAz>false</bistaticShiftCorrectionAz>
+      <dopplerShiftCorrectionRg>false</dopplerShiftCorrectionRg>
+      <etadFile>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\data\S1A_IW_ETA__AXDV_20230810T165635_20230810T165702_049816_05FDAB_C795.SAFE\manifest.safe</etadFile>
+      <fmMismatchCorrectionAz>false</fmMismatchCorrectionAz>
+      <geodeticCorrectionAz>false</geodeticCorrectionAz>
+      <geodeticCorrectionRg>false</geodeticCorrectionRg>
+      <ionosphericCorrectionRg>false</ionosphericCorrectionRg>
+      <outputPhaseCorrections>false</outputPhaseCorrections>
+      <resamplingImage>true</resamplingImage>
+      <resamplingType>BISINC_5_POINT_INTERPOLATION</resamplingType>
+      <sourceBandNames/>
+      <sumOfAzimuthCorrections>true</sumOfAzimuthCorrections>
+      <sumOfRangeCorrections>true</sumOfRangeCorrections>
+      <troposphericCorrectionRg>false</troposphericCorrectionRg>
+    </parameters>
+  </node>
+  <node id="BackGeo">
+    <operator>Back-Geocoding</operator>
+    <sources>
+      <source refid="ETAD_ref"/>
+      <source.1 refid="ETAD_sec"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <demName>Copernicus 30m Global DEM</demName>
+      <demResamplingMethod>BICUBIC_INTERPOLATION</demResamplingMethod>
+      <disableReramp>false</disableReramp>
+      <externalDEMFile/>
+      <externalDEMNoDataValue>0</externalDEMNoDataValue>
+      <maskOutAreaWithoutElevation>true</maskOutAreaWithoutElevation>
+      <outputDerampDemodPhase>false</outputDerampDemodPhase>
+      <outputRangeAzimuthOffset>false</outputRangeAzimuthOffset>
+      <resamplingType>BISINC_5_POINT_INTERPOLATION</resamplingType>
+    </parameters>
+  </node>
+  <node id="Ifg">
+    <operator>Interferogram</operator>
+    <sources>
+      <sourceProduct refid="BackGeo"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <cohWinAz>10</cohWinAz>
+      <cohWinRg>10</cohWinRg>
+      <cohWinSizeMeters>0</cohWinSizeMeters>
+      <demName>Copernicus 30m Global DEM</demName>
+      <externalDEMApplyEGM>true</externalDEMApplyEGM>
+      <externalDEMFile/>
+      <externalDEMNoDataValue>0</externalDEMNoDataValue>
+      <gslcModeAutoDetected>false</gslcModeAutoDetected>
+      <includeCoherence>true</includeCoherence>
+      <orbitDegree>3</orbitDegree>
+      <outputElevation>false</outputElevation>
+      <outputFlatEarthPhase>false</outputFlatEarthPhase>
+      <outputLatLon>false</outputLatLon>
+      <outputTopoPhase>false</outputTopoPhase>
+      <squarePixel>true</squarePixel>
+      <srpNumberPoints>501</srpNumberPoints>
+      <srpPolynomialDegree>5</srpPolynomialDegree>
+      <subtractFlatEarthPhase>true</subtractFlatEarthPhase>
+      <subtractTopographicPhase>false</subtractTopographicPhase>
+      <tileExtensionPercent>100</tileExtensionPercent>
+    </parameters>
+  </node>
+  <node id="Deburst">
+    <operator>TOPSAR-Deburst</operator>
+    <sources>
+      <sourceProduct refid="Ifg"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <selectedPolarisations/>
+    </parameters>
+  </node>
+  <node id="Goldstein">
+    <operator>GoldsteinPhaseFiltering</operator>
+    <sources>
+      <sourceProduct refid="Deburst"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <FFTSizeString>64</FFTSizeString>
+      <alpha>1.0</alpha>
+      <alphaMax>1.0</alphaMax>
+      <alphaMin>0.2</alphaMin>
+      <coherenceThreshold>0.2</coherenceThreshold>
+      <useAdaptiveAlpha>true</useAdaptiveAlpha>
+      <useCoherenceMask>false</useCoherenceMask>
+      <windowSizeString>3</windowSizeString>
+    </parameters>
+  </node>
+  <node id="Subset">
+    <operator>Subset</operator>
+    <sources>
+      <sourceProduct refid="Goldstein"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <fullSwath>false</fullSwath>
+      <geoRegion/>
+      <polygonRegion/>
+      <referenceBand/>
+      <region>8000,500,7000,1500</region>
+      <subSamplingX>1</subSamplingX>
+      <subSamplingY>1</subSamplingY>
+      <tiePointGridNames/>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Write">
+    <operator>Write</operator>
+    <sources>
+      <sourceProduct refid="Subset"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <clearCacheAfterRowWrite>false</clearCacheAfterRowWrite>
+      <deleteOutputOnFailure>true</deleteOutputOnFailure>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\snap_nb_etad_insar.dim</file>
+      <formatName>BEAM-DIMAP</formatName>
+      <writeEntireTileRows>false</writeEntireTileRows>
+    </parameters>
+  </node>
+</graph>

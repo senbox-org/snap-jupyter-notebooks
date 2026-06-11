@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <version>1.0</version>
+  <node id="Read">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\data\S1A_IW_SLC__1SDV_20230729T165635_20230729T165702_049641_05F820.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="ETAD">
+    <operator>S1-ETAD-Correction</operator>
+    <sources>
+      <sourceProduct refid="Read"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bistaticShiftCorrectionAz>false</bistaticShiftCorrectionAz>
+      <dopplerShiftCorrectionRg>false</dopplerShiftCorrectionRg>
+      <etadFile>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\data\S1A_IW_ETA__AXDV_20230729T165635_20230729T165702_049641_05F820_BAEE.SAFE\manifest.safe</etadFile>
+      <fmMismatchCorrectionAz>false</fmMismatchCorrectionAz>
+      <geodeticCorrectionAz>false</geodeticCorrectionAz>
+      <geodeticCorrectionRg>false</geodeticCorrectionRg>
+      <ionosphericCorrectionRg>false</ionosphericCorrectionRg>
+      <outputPhaseCorrections>true</outputPhaseCorrections>
+      <resamplingImage>false</resamplingImage>
+      <resamplingType>BISINC_5_POINT_INTERPOLATION</resamplingType>
+      <sourceBandNames/>
+      <sumOfAzimuthCorrections>true</sumOfAzimuthCorrections>
+      <sumOfRangeCorrections>true</sumOfRangeCorrections>
+      <troposphericCorrectionRg>false</troposphericCorrectionRg>
+    </parameters>
+  </node>
+  <node id="Write">
+    <operator>Write</operator>
+    <sources>
+      <sourceProduct refid="ETAD"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <clearCacheAfterRowWrite>false</clearCacheAfterRowWrite>
+      <deleteOutputOnFailure>true</deleteOutputOnFailure>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\snap_nb_etad_inspect.dim</file>
+      <formatName>BEAM-DIMAP</formatName>
+      <writeEntireTileRows>false</writeEntireTileRows>
+    </parameters>
+  </node>
+</graph>

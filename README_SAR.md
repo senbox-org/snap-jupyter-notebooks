@@ -121,8 +121,8 @@ Notebooks get their input one of three ways:
 | ds-insar-timeseries | coregistered S1 SLC stack (+ SNAPHU for Parts 3–4) | ⬇️ **auto** — 12-acquisition Etna stack from S3 |
 | gslc-insar | SLC pair | ⬇️ **auto** — Part 1: Envisat ASAR Stripmap pair (Santorini); Part 2 (S1 IW, set `RUN_IW=True`): Etna pair |
 | s1-classical-insar-displacement | S1 SLC pair (+ SNAPHU for Parts 3–4) | ⬇️ **auto** — Etna S1 IW pair from S3 (~8 GB) |
-| s1-etad-insar | S1 SLC pair **+** matching ETAD | ⬇️ **auto** S1 pair from S3; ❌ provide the `*_ETA_*` products yourself |
-| optical-collocation | one S1 GRD **+** one S2 L2A | ❌ provide both |
+| s1-etad-insar | S1 SLC pair **+** matching ETAD | ⬇️ **auto** — Etna S1 pair + matching ETAD (2023-07-29/08-10) from S3 |
+| optical-collocation | one S1 GRD **+** one S2 L2A | ⬇️ **auto** — coincident Sacramento-Delta S1+S2 pair (2023-08-27) from S3 |
 | rcm-compact-pol | RCM compact-pol product (`*MCP*`, [NRCan EODMS](https://eodms-sgdot.nrcan-rncan.gc.ca/)) | ❌ provide one |
 | biomass-polarimetric | BIOMASS L1 SCS quad-pol (`BIO_S2_SCS__1S_*`) | ❌ provide one |
 

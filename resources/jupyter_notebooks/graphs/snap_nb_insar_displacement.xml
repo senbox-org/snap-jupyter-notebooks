@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <version>1.0</version>
+  <node id="ReadWrapped">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\snap_nb_insar_wrapped.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="ReadUnwrapped">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu\snap_nb_insar_wrapped\UnwPhase_ifg_VV_09Aug2014_21Aug2014.snaphu.hdr</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="SnaphuImport">
+    <operator>SnaphuImport</operator>
+    <sources>
+      <source refid="ReadWrapped"/>
+      <source.1 refid="ReadUnwrapped"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <doNotKeepWrapped>false</doNotKeepWrapped>
+    </parameters>
+  </node>
+  <node id="Disp">
+    <operator>PhaseToDisplacement</operator>
+    <sources>
+      <sourceProduct refid="SnaphuImport"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement"/>
+  </node>
+  <node id="TC">
+    <operator>Terrain-Correction</operator>
+    <sources>
+      <sourceProduct refid="Disp"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <alignToStandardGrid>false</alignToStandardGrid>
+      <applyAPDCorrection>false</applyAPDCorrection>
+      <applyRadiometricNormalization>false</applyRadiometricNormalization>
+      <auxFile>Latest Auxiliary File</auxFile>
+      <demName>Copernicus 30m Global DEM</demName>
+      <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
+      <externalAuxFile/>
+      <externalDEMApplyEGM>true</externalDEMApplyEGM>
+      <externalDEMFile/>
+      <externalDEMNoDataValue>0</externalDEMNoDataValue>
+      <imgResamplingMethod>BILINEAR_INTERPOLATION</imgResamplingMethod>
+      <incidenceAngleForGamma0>Use projected local incidence angle from DEM</incidenceAngleForGamma0>
+      <incidenceAngleForSigma0>Use projected local incidence angle from DEM</incidenceAngleForSigma0>
+      <mapProjection>WGS84(DD)</mapProjection>
+      <nodataValueAtSea>true</nodataValueAtSea>
+      <outputComplex>false</outputComplex>
+      <pixelSpacingInDegree>0</pixelSpacingInDegree>
+      <pixelSpacingInMeter>20</pixelSpacingInMeter>
+      <saveBetaNought>false</saveBetaNought>
+      <saveDEM>false</saveDEM>
+      <saveGammaNought>false</saveGammaNought>
+      <saveIncidenceAngleFromEllipsoid>false</saveIncidenceAngleFromEllipsoid>
+      <saveLatLon>false</saveLatLon>
+      <saveLayoverShadowMask>false</saveLayoverShadowMask>
+      <saveLocalIncidenceAngle>false</saveLocalIncidenceAngle>
+      <saveProjectedLocalIncidenceAngle>false</saveProjectedLocalIncidenceAngle>
+      <saveSelectedSourceBand>true</saveSelectedSourceBand>
+      <saveSigmaNought>false</saveSigmaNought>
+      <sourceBandNames/>
+      <standardGridOriginX>0</standardGridOriginX>
+      <standardGridOriginY>0</standardGridOriginY>
+    </parameters>
+  </node>
+  <node id="Write">
+    <operator>Write</operator>
+    <sources>
+      <sourceProduct refid="TC"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <clearCacheAfterRowWrite>false</clearCacheAfterRowWrite>
+      <deleteOutputOnFailure>true</deleteOutputOnFailure>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\snap_nb_insar_displacement.dim</file>
+      <formatName>BEAM-DIMAP</formatName>
+      <writeEntireTileRows>false</writeEntireTileRows>
+    </parameters>
+  </node>
+</graph>
