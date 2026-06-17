@@ -9,6 +9,7 @@ builds and runs SNAP GPF graphs).
 | `snap-nb-sar-speckle-filter-showcase` | Compare 9 speckle filters + ENL metric | intermediate |
 | `snap-nb-sar-optical-collocation` | Fuse Sentinel-1 backscatter with Sentinel-2 indices | advanced |
 | `snap-nb-sar-gslc-insar` | Geocoded SLC (GSLC) and GSLC-based InSAR | advanced |
+| `snap-nb-sar-gslc-vs-classical-insar` | GSLC InSAR vs classical InSAR, both geocoded, on one Etna IW pair | advanced |
 | `snap-nb-sar-s1-classical-insar-displacement` | Classical S1 InSAR → unwrap → displacement | advanced |
 | `snap-nb-sar-s1-etad-insar` | ETAD correction and ETAD-enhanced InSAR | advanced |
 | `snap-nb-sar-ds-insar-timeseries` | DS-InSAR time series: Phase Linking (SqueeSAR / EVD / EMI) + SBAS | advanced |
@@ -120,6 +121,7 @@ Notebooks get their input one of three ways:
 | speckle-filter-showcase | one S1 GRD (SM/IW) | ✅ **bundled** small SM **HH** GRDH subset in `data/` |
 | ds-insar-timeseries | coregistered S1 SLC stack (+ SNAPHU for Parts 3–4) | ⬇️ **auto** — 12-acquisition Etna stack from S3 |
 | gslc-insar | SLC pair | ⬇️ **auto** — Part 1: Envisat ASAR Stripmap pair (Santorini); Part 2 (S1 IW, set `RUN_IW=True`): Etna pair |
+| gslc-vs-classical-insar | S1 SLC pair | ⬇️ **auto** — Etna S1 IW pair from S3 (same as classical) |
 | s1-classical-insar-displacement | S1 SLC pair (+ SNAPHU for Parts 3–4) | ⬇️ **auto** — Etna S1 IW pair from S3 (~8 GB) |
 | s1-etad-insar | S1 SLC pair **+** matching ETAD | ⬇️ **auto** — Etna S1 pair + matching ETAD (2023-07-29/08-10) from S3 |
 | optical-collocation | one S1 GRD **+** one S2 L2A | ⬇️ **auto** — coincident Sacramento-Delta S1+S2 pair (2023-08-27) from S3 |
