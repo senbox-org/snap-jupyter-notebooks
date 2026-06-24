@@ -20,7 +20,10 @@ builds and runs SNAP GPF graphs).
 
 ## 1. One-time environment setup
 
-Verified with **SNAP 14**, **Python 3.13** (Windows), **jpy 2.1.0**. Adapt versions/paths to your system.
+Verified with **SNAP 14** and **Python 3.13** (Windows). Any CPython in the **`esa_snappy`-supported
+range — 3.9–3.13** — works; the commands below use `py -3.13`, so substitute your version in those
+calls if you run a different one. Adapt versions/paths to your system. (`jpy`, the native Java↔Python
+bridge, no longer needs a separate install — see step 1.)
 
 > **Shortcut:** the steps below are automated by **`setup_ds_insar.ps1`** (Windows) and
 > **`setup_ds_insar.sh`** (macOS/Linux) — one command configures `esa_snappy` + `snapista`, installs
@@ -31,21 +34,18 @@ Verified with **SNAP 14**, **Python 3.13** (Windows), **jpy 2.1.0**. Adapt versi
 ### Prerequisites
 - **ESA SNAP** installed with the **Sentinel-1 / Microwave Toolbox** (provides `gpt` and the SAR operators).
   Default Windows location: `C:\Program Files\esa-snap`.
-- A real **Python 3.13** install (the Microsoft Store "python3.10" stub does **not** work).
-  All commands below use the `py -3.13` launcher.
+- A real **Python 3.9–3.13** install (the Microsoft Store "python3.10" stub does **not** work).
+  All commands below use the `py -3.13` launcher — swap in `py -3.x` for your version.
 
 ### Steps
 
-1. **Install the native Java↔Python bridge (`jpy`)** — a prebuilt wheel exists for cp313:
-   ```powershell
-   py -3.13 -m pip install jpy
-   ```
-
-2. **Make sure `esa_snappy` is present and points at SNAP.**
+1. **Make sure `esa_snappy` is present and points at SNAP.**
    `esa_snappy` ships with SNAP; configure it for your Python with SNAP's helper:
    ```powershell
    & "C:\Program Files\esa-snap\bin\snappy-conf.bat" (py -3.13 -c "import sys;print(sys.executable)")
    ```
+   > **No separate `jpy` install needed.** `esa_snappy` bundles prebuilt `jpy` wheels for
+   > Python 3.9–3.13; `snappy-conf` picks the one matching your interpreter and unpacks it for you.
    Then tell `esa_snappy` where SNAP lives by creating a config file named **`esa_snappy.ini`**
    (the filename must match the package dir name) inside the `esa_snappy` package directory:
    ```powershell
@@ -57,19 +57,19 @@ Verified with **SNAP 14**, **Python 3.13** (Windows), **jpy 2.1.0**. Adapt versi
    ```
    (Alternatively set a `SNAP_HOME` environment variable instead of the `.ini`.)
 
-3. **Install `snapista`.** It is **not on PyPI** — it is bundled inside `esa_snappy`. Copy it to a
+2. **Install `snapista`.** It is **not on PyPI** — it is bundled inside `esa_snappy`. Copy it to a
    top-level package so `import snapista` works:
    ```powershell
    $sp = py -3.13 -c "import sysconfig;print(sysconfig.get_paths()['purelib'])"
    if (-not (Test-Path "$sp\snapista")) { Copy-Item -Recurse "$sp\esa_snappy\snapista" "$sp\snapista" }
    ```
 
-4. **Install the notebook + plotting dependencies:**
+3. **Install the notebook + plotting dependencies:**
    ```powershell
    py -3.13 -m pip install numpy matplotlib jupyterlab nbconvert ipykernel
    ```
 
-5. **Verify:**
+4. **Verify:**
    ```powershell
    py -3.13 -c "import esa_snappy; from esa_snappy import ProductIO; from snapista import Graph, Operator, TargetBand, TargetBandDescriptors; print('OK')"
    ```
@@ -146,9 +146,10 @@ See `README_ds_insar_setup.md`.
 
 ## 4. Troubleshooting
 
-- **`ModuleNotFoundError: jpyutil`** → `jpy` not installed for this Python (`py -3.13 -m pip install jpy`).
-- **`Can't find SNAP distribution directory`** → `esa_snappy.ini` missing/wrong (step 2) or `SNAP_HOME` unset.
-- **`ModuleNotFoundError: snapista`** → the bundled copy wasn't promoted to top-level site-packages (step 3).
+- **`ModuleNotFoundError: jpyutil`** → `jpy` wasn't unpacked for this Python; re-run `snappy-conf`
+  (step 1) against the interpreter you're actually using, and confirm it's in the 3.9–3.13 range.
+- **`Can't find SNAP distribution directory`** → `esa_snappy.ini` missing/wrong (step 1) or `SNAP_HOME` unset.
+- **`ModuleNotFoundError: snapista`** → the bundled copy wasn't promoted to top-level site-packages (step 2).
 - **`Band 'X' not found`** in a plot cell → the product's polarisation/band names differ; check the
   printed `Bands:` list and adjust the `polarisation` / `find_band(...)` arguments.
 - **Slow first import / first run** → the SNAP JVM start, orbit download and DEM download are one-time.
