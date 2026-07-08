@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <version>1.0</version>
+  <node id="Wrapped">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\ds_insar_network.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="U0">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu\ds_insar_network\UnwPhase_ifg_IW2_VV_03Feb2021_09Feb2021.snaphu.hdr</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Imp0">
+    <operator>SnaphuImport</operator>
+    <sources>
+      <source refid="Wrapped"/>
+      <source.1 refid="U0"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <doNotKeepWrapped>false</doNotKeepWrapped>
+    </parameters>
+  </node>
+  <node id="U1">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu\ds_insar_network\UnwPhase_ifg_IW2_VV_04Jan2021_10Jan2021.snaphu.hdr</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Imp1">
+    <operator>SnaphuImport</operator>
+    <sources>
+      <source refid="Imp0"/>
+      <source.1 refid="U1"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <doNotKeepWrapped>false</doNotKeepWrapped>
+    </parameters>
+  </node>
+  <node id="U2">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu\ds_insar_network\UnwPhase_ifg_IW2_VV_05Mar2021_11Mar2021.snaphu.hdr</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Imp2">
+    <operator>SnaphuImport</operator>
+    <sources>
+      <source refid="Imp1"/>
+      <source.1 refid="U2"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <doNotKeepWrapped>false</doNotKeepWrapped>
+    </parameters>
+  </node>
+  <node id="U3">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu\ds_insar_network\UnwPhase_ifg_IW2_VV_09Feb2021_15Feb2021.snaphu.hdr</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Imp3">
+    <operator>SnaphuImport</operator>
+    <sources>
+      <source refid="Imp2"/>
+      <source.1 refid="U3"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <doNotKeepWrapped>false</doNotKeepWrapped>
+    </parameters>
+  </node>
+  <node id="U4">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu\ds_insar_network\UnwPhase_ifg_IW2_VV_10Jan2021_16Jan2021.snaphu.hdr</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Imp4">
+    <operator>SnaphuImport</operator>
+    <sources>
+      <source refid="Imp3"/>
+      <source.1 refid="U4"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <doNotKeepWrapped>false</doNotKeepWrapped>
+    </parameters>
+  </node>
+  <node id="U5">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu\ds_insar_network\UnwPhase_ifg_IW2_VV_15Feb2021_21Feb2021.snaphu.hdr</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Imp5">
+    <operator>SnaphuImport</operator>
+    <sources>
+      <source refid="Imp4"/>
+      <source.1 refid="U5"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <doNotKeepWrapped>false</doNotKeepWrapped>
+    </parameters>
+  </node>
+  <node id="U6">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu\ds_insar_network\UnwPhase_ifg_IW2_VV_16Jan2021_22Jan2021.snaphu.hdr</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Imp6">
+    <operator>SnaphuImport</operator>
+    <sources>
+      <source refid="Imp5"/>
+      <source.1 refid="U6"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <doNotKeepWrapped>false</doNotKeepWrapped>
+    </parameters>
+  </node>
+  <node id="U7">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu\ds_insar_network\UnwPhase_ifg_IW2_VV_21Feb2021_27Feb2021.snaphu.hdr</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Imp7">
+    <operator>SnaphuImport</operator>
+    <sources>
+      <source refid="Imp6"/>
+      <source.1 refid="U7"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <doNotKeepWrapped>false</doNotKeepWrapped>
+    </parameters>
+  </node>
+  <node id="U8">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu\ds_insar_network\UnwPhase_ifg_IW2_VV_22Jan2021_28Jan2021.snaphu.hdr</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Imp8">
+    <operator>SnaphuImport</operator>
+    <sources>
+      <source refid="Imp7"/>
+      <source.1 refid="U8"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <doNotKeepWrapped>false</doNotKeepWrapped>
+    </parameters>
+  </node>
+  <node id="U9">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu\ds_insar_network\UnwPhase_ifg_IW2_VV_27Feb2021_05Mar2021.snaphu.hdr</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Imp9">
+    <operator>SnaphuImport</operator>
+    <sources>
+      <source refid="Imp8"/>
+      <source.1 refid="U9"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <doNotKeepWrapped>false</doNotKeepWrapped>
+    </parameters>
+  </node>
+  <node id="U10">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu\ds_insar_network\UnwPhase_ifg_IW2_VV_28Jan2021_03Feb2021.snaphu.hdr</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Imp10">
+    <operator>SnaphuImport</operator>
+    <sources>
+      <source refid="Imp9"/>
+      <source.1 refid="U10"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <doNotKeepWrapped>false</doNotKeepWrapped>
+    </parameters>
+  </node>
+  <node id="Write">
+    <operator>Write</operator>
+    <sources>
+      <sourceProduct refid="Imp10"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <clearCacheAfterRowWrite>false</clearCacheAfterRowWrite>
+      <deleteOutputOnFailure>true</deleteOutputOnFailure>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\ds_insar_unwrapped.dim</file>
+      <formatName>BEAM-DIMAP</formatName>
+      <writeEntireTileRows>false</writeEntireTileRows>
+    </parameters>
+  </node>
+</graph>

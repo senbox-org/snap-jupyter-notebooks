@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <version>1.0</version>
+  <node id="Read">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\snap_nb_insar_wrapped.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="SnaphuExport">
+    <operator>SnaphuExport</operator>
+    <sources>
+      <sourceProduct refid="Read"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <colOverlap>200</colOverlap>
+      <initMethod>MCF</initMethod>
+      <numberOfProcessors>1</numberOfProcessors>
+      <numberOfTileCols>1</numberOfTileCols>
+      <numberOfTileRows>1</numberOfTileRows>
+      <rowOverlap>200</rowOverlap>
+      <statCostMode>DEFO</statCostMode>
+      <targetFolder>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\snaphu</targetFolder>
+      <tileCostThreshold>500</tileCostThreshold>
+    </parameters>
+  </node>
+</graph>

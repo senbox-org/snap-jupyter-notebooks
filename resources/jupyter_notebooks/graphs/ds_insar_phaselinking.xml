@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <version>1.0</version>
+  <node id="Read">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\data\etna_coreg_stack.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="PhaseLinking">
+    <operator>PhaseLinking</operator>
+    <sources>
+      <sourceProduct refid="Read"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <coherenceBiasCorrection>false</coherenceBiasCorrection>
+      <estimator>EVD</estimator>
+      <outputShpCount>true</outputShpCount>
+      <outputTempCoherence>true</outputTempCoherence>
+      <referenceEpochDate/>
+      <shpAlpha>0.05</shpAlpha>
+      <shpMin>20</shpMin>
+      <shpTest>KS</shpTest>
+      <tempCohMin>0.5</tempCohMin>
+      <windowAzimuth>15</windowAzimuth>
+      <windowRange>15</windowRange>
+    </parameters>
+  </node>
+  <node id="Write">
+    <operator>Write</operator>
+    <sources>
+      <sourceProduct refid="PhaseLinking"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <clearCacheAfterRowWrite>false</clearCacheAfterRowWrite>
+      <deleteOutputOnFailure>true</deleteOutputOnFailure>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\ds_insar_phaselinked.dim</file>
+      <formatName>BEAM-DIMAP</formatName>
+      <writeEntireTileRows>false</writeEntireTileRows>
+    </parameters>
+  </node>
+</graph>

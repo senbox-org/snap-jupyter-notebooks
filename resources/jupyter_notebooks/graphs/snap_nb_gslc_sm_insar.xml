@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <version>1.0</version>
+  <node id="Read_ref">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\data\Santorini\subset_3_of_ASA_IMS_1PNUPA20040225_200558_000000162024_00329_10403_7640.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Orbit_ref">
+    <operator>Apply-Orbit-File</operator>
+    <sources>
+      <sourceProduct refid="Read_ref"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <continueOnFail>true</continueOnFail>
+      <orbitType>DORIS Precise VOR (ENVISAT) (Auto Download)</orbitType>
+      <polyDegree>3</polyDegree>
+    </parameters>
+  </node>
+  <node id="GSLC_ref">
+    <operator>GSLC-Terrain-Correction</operator>
+    <sources>
+      <sourceProduct refid="Orbit_ref"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <alignToStandardGrid>true</alignToStandardGrid>
+      <applyIonosphericCorrection>false</applyIonosphericCorrection>
+      <applySolidEarthTide>false</applySolidEarthTide>
+      <applyTroposphericCorrection>false</applyTroposphericCorrection>
+      <azimuthOffsetPixels>0.0</azimuthOffsetPixels>
+      <demName>Copernicus 30m Global DEM</demName>
+      <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
+      <externalDEMApplyEGM>true</externalDEMApplyEGM>
+      <externalDEMFile/>
+      <externalDEMNoDataValue>0</externalDEMNoDataValue>
+      <imgResamplingMethod>BISINC_5_POINT_INTERPOLATION</imgResamplingMethod>
+      <mapProjection>WGS84(DD)</mapProjection>
+      <nodataValueAtSea>true</nodataValueAtSea>
+      <outputFlattened>false</outputFlattened>
+      <oversamplingPercent>0.0</oversamplingPercent>
+      <pixelSpacingInDegree>0</pixelSpacingInDegree>
+      <pixelSpacingInMeter>0</pixelSpacingInMeter>
+      <rangeOffsetPixels>0.0</rangeOffsetPixels>
+      <saveDEM>false</saveDEM>
+      <saveIncidenceAngleFromEllipsoid>false</saveIncidenceAngleFromEllipsoid>
+      <saveLatLon>false</saveLatLon>
+      <saveLayoverShadowMask>false</saveLayoverShadowMask>
+      <saveLocalIncidenceAngle>false</saveLocalIncidenceAngle>
+      <saveProjectedLocalIncidenceAngle>false</saveProjectedLocalIncidenceAngle>
+      <saveSimulatedPhase>false</saveSimulatedPhase>
+      <saveSimulatedUnwrappedPhase>false</saveSimulatedUnwrappedPhase>
+      <sourceBandNames/>
+      <standardGridOriginX>0</standardGridOriginX>
+      <standardGridOriginY>0</standardGridOriginY>
+    </parameters>
+  </node>
+  <node id="Read_sec">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\data\Santorini\subset_4_of_ASA_IMS_1PNUPA20040331_200601_000000162025_00329_10904_7641.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Orbit_sec">
+    <operator>Apply-Orbit-File</operator>
+    <sources>
+      <sourceProduct refid="Read_sec"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <continueOnFail>true</continueOnFail>
+      <orbitType>DORIS Precise VOR (ENVISAT) (Auto Download)</orbitType>
+      <polyDegree>3</polyDegree>
+    </parameters>
+  </node>
+  <node id="GSLC_sec">
+    <operator>GSLC-Terrain-Correction</operator>
+    <sources>
+      <sourceProduct refid="Orbit_sec"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <alignToStandardGrid>true</alignToStandardGrid>
+      <applyIonosphericCorrection>false</applyIonosphericCorrection>
+      <applySolidEarthTide>false</applySolidEarthTide>
+      <applyTroposphericCorrection>false</applyTroposphericCorrection>
+      <azimuthOffsetPixels>0.0</azimuthOffsetPixels>
+      <demName>Copernicus 30m Global DEM</demName>
+      <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
+      <externalDEMApplyEGM>true</externalDEMApplyEGM>
+      <externalDEMFile/>
+      <externalDEMNoDataValue>0</externalDEMNoDataValue>
+      <imgResamplingMethod>BISINC_5_POINT_INTERPOLATION</imgResamplingMethod>
+      <mapProjection>WGS84(DD)</mapProjection>
+      <nodataValueAtSea>true</nodataValueAtSea>
+      <outputFlattened>false</outputFlattened>
+      <oversamplingPercent>0.0</oversamplingPercent>
+      <pixelSpacingInDegree>0</pixelSpacingInDegree>
+      <pixelSpacingInMeter>0</pixelSpacingInMeter>
+      <rangeOffsetPixels>0.0</rangeOffsetPixels>
+      <saveDEM>false</saveDEM>
+      <saveIncidenceAngleFromEllipsoid>false</saveIncidenceAngleFromEllipsoid>
+      <saveLatLon>false</saveLatLon>
+      <saveLayoverShadowMask>false</saveLayoverShadowMask>
+      <saveLocalIncidenceAngle>false</saveLocalIncidenceAngle>
+      <saveProjectedLocalIncidenceAngle>false</saveProjectedLocalIncidenceAngle>
+      <saveSimulatedPhase>false</saveSimulatedPhase>
+      <saveSimulatedUnwrappedPhase>false</saveSimulatedUnwrappedPhase>
+      <sourceBandNames/>
+      <standardGridOriginX>0</standardGridOriginX>
+      <standardGridOriginY>0</standardGridOriginY>
+    </parameters>
+  </node>
+  <node id="Stack">
+    <operator>CreateStack</operator>
+    <sources>
+      <source refid="GSLC_ref"/>
+      <source.1 refid="GSLC_sec"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <autoCoregisterGSLC>true</autoCoregisterGSLC>
+      <extent>Master</extent>
+      <initialOffsetMethod>Product Geolocation</initialOffsetMethod>
+      <masterBandNames/>
+      <resamplingType>NONE</resamplingType>
+      <skipBiasEstimation>false</skipBiasEstimation>
+      <slaveBandNames/>
+    </parameters>
+  </node>
+  <node id="Ifg">
+    <operator>Interferogram</operator>
+    <sources>
+      <sourceProduct refid="Stack"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <cohWinAz>10</cohWinAz>
+      <cohWinRg>10</cohWinRg>
+      <cohWinSizeMeters>0</cohWinSizeMeters>
+      <demName>Copernicus 30m Global DEM</demName>
+      <externalDEMApplyEGM>true</externalDEMApplyEGM>
+      <externalDEMFile/>
+      <externalDEMNoDataValue>0</externalDEMNoDataValue>
+      <gslcModeAutoDetected>false</gslcModeAutoDetected>
+      <includeCoherence>true</includeCoherence>
+      <orbitDegree>3</orbitDegree>
+      <outputElevation>false</outputElevation>
+      <outputFlatEarthPhase>false</outputFlatEarthPhase>
+      <outputLatLon>false</outputLatLon>
+      <outputTopoPhase>false</outputTopoPhase>
+      <squarePixel>true</squarePixel>
+      <srpNumberPoints>501</srpNumberPoints>
+      <srpPolynomialDegree>5</srpPolynomialDegree>
+      <subtractFlatEarthPhase>true</subtractFlatEarthPhase>
+      <subtractTopographicPhase>false</subtractTopographicPhase>
+      <tileExtensionPercent>100</tileExtensionPercent>
+    </parameters>
+  </node>
+  <node id="Goldstein">
+    <operator>GoldsteinPhaseFiltering</operator>
+    <sources>
+      <sourceProduct refid="Ifg"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <FFTSizeString>64</FFTSizeString>
+      <alpha>1.0</alpha>
+      <alphaMax>1.0</alphaMax>
+      <alphaMin>0.2</alphaMin>
+      <coherenceThreshold>0.2</coherenceThreshold>
+      <useAdaptiveAlpha>true</useAdaptiveAlpha>
+      <useCoherenceMask>false</useCoherenceMask>
+      <windowSizeString>3</windowSizeString>
+    </parameters>
+  </node>
+  <node id="Write">
+    <operator>Write</operator>
+    <sources>
+      <sourceProduct refid="Goldstein"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <clearCacheAfterRowWrite>false</clearCacheAfterRowWrite>
+      <deleteOutputOnFailure>true</deleteOutputOnFailure>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\snap_nb_gslc_sm_insar.dim</file>
+      <formatName>BEAM-DIMAP</formatName>
+      <writeEntireTileRows>false</writeEntireTileRows>
+    </parameters>
+  </node>
+</graph>

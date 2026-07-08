@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <version>1.0</version>
+  <node id="Read">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\data\S1A_GRDH_20230827_delta_subset.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Orbit">
+    <operator>Apply-Orbit-File</operator>
+    <sources>
+      <sourceProduct refid="Read"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <continueOnFail>true</continueOnFail>
+      <orbitType>Sentinel Precise (Auto Download)</orbitType>
+      <polyDegree>3</polyDegree>
+    </parameters>
+  </node>
+  <node id="ThermalNoise">
+    <operator>ThermalNoiseRemoval</operator>
+    <sources>
+      <sourceProduct refid="Orbit"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <clipNegativeValues>true</clipNegativeValues>
+      <outputNoise>false</outputNoise>
+      <reIntroduceThermalNoise>false</reIntroduceThermalNoise>
+      <removeThermalNoise>true</removeThermalNoise>
+      <selectedPolarisations>VV,VH</selectedPolarisations>
+    </parameters>
+  </node>
+  <node id="BorderNoise">
+    <operator>Remove-GRD-Border-Noise</operator>
+    <sources>
+      <sourceProduct refid="ThermalNoise"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <borderLimit>500</borderLimit>
+      <selectedPolarisations>VV,VH</selectedPolarisations>
+      <trimThreshold>0.5</trimThreshold>
+    </parameters>
+  </node>
+  <node id="Calib">
+    <operator>Calibration</operator>
+    <sources>
+      <sourceProduct refid="BorderNoise"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <auxFile>Latest Auxiliary File</auxFile>
+      <createBetaBand>false</createBetaBand>
+      <createGammaBand>false</createGammaBand>
+      <externalAuxFile/>
+      <outputBetaBand>false</outputBetaBand>
+      <outputGammaBand>false</outputGammaBand>
+      <outputImageInComplex>false</outputImageInComplex>
+      <outputImageScaleInDb>false</outputImageScaleInDb>
+      <outputSigmaBand>true</outputSigmaBand>
+      <selectedPolarisations>VV,VH</selectedPolarisations>
+      <sourceBandNames/>
+    </parameters>
+  </node>
+  <node id="Speckle">
+    <operator>Speckle-Filter</operator>
+    <sources>
+      <sourceProduct refid="Calib"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <anSize>50</anSize>
+      <dampingFactor>2</dampingFactor>
+      <enl>1.0</enl>
+      <estimateENL>false</estimateENL>
+      <filter>Refined Lee</filter>
+      <filterSizeX>3</filterSizeX>
+      <filterSizeY>3</filterSizeY>
+      <numLooksStr>1</numLooksStr>
+      <sigmaStr>0.9</sigmaStr>
+      <sourceBandNames/>
+      <targetWindowSizeStr>3x3</targetWindowSizeStr>
+      <windowSize>5x5</windowSize>
+    </parameters>
+  </node>
+  <node id="TC">
+    <operator>Terrain-Correction</operator>
+    <sources>
+      <sourceProduct refid="Speckle"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <alignToStandardGrid>false</alignToStandardGrid>
+      <applyAPDCorrection>false</applyAPDCorrection>
+      <applyRadiometricNormalization>false</applyRadiometricNormalization>
+      <auxFile>Latest Auxiliary File</auxFile>
+      <demName>Copernicus 30m Global DEM</demName>
+      <demResamplingMethod>BILINEAR_INTERPOLATION</demResamplingMethod>
+      <externalAuxFile/>
+      <externalDEMApplyEGM>true</externalDEMApplyEGM>
+      <externalDEMFile/>
+      <externalDEMNoDataValue>0</externalDEMNoDataValue>
+      <imgResamplingMethod>BILINEAR_INTERPOLATION</imgResamplingMethod>
+      <incidenceAngleForGamma0>Use projected local incidence angle from DEM</incidenceAngleForGamma0>
+      <incidenceAngleForSigma0>Use projected local incidence angle from DEM</incidenceAngleForSigma0>
+      <mapProjection>WGS84(DD)</mapProjection>
+      <nodataValueAtSea>true</nodataValueAtSea>
+      <outputComplex>false</outputComplex>
+      <pixelSpacingInDegree>0</pixelSpacingInDegree>
+      <pixelSpacingInMeter>10</pixelSpacingInMeter>
+      <saveBetaNought>false</saveBetaNought>
+      <saveDEM>false</saveDEM>
+      <saveGammaNought>false</saveGammaNought>
+      <saveIncidenceAngleFromEllipsoid>false</saveIncidenceAngleFromEllipsoid>
+      <saveLatLon>false</saveLatLon>
+      <saveLayoverShadowMask>false</saveLayoverShadowMask>
+      <saveLocalIncidenceAngle>false</saveLocalIncidenceAngle>
+      <saveProjectedLocalIncidenceAngle>false</saveProjectedLocalIncidenceAngle>
+      <saveSelectedSourceBand>true</saveSelectedSourceBand>
+      <saveSigmaNought>false</saveSigmaNought>
+      <sourceBandNames/>
+      <standardGridOriginX>0</standardGridOriginX>
+      <standardGridOriginY>0</standardGridOriginY>
+    </parameters>
+  </node>
+  <node id="Write">
+    <operator>Write</operator>
+    <sources>
+      <sourceProduct refid="TC"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <clearCacheAfterRowWrite>false</clearCacheAfterRowWrite>
+      <deleteOutputOnFailure>true</deleteOutputOnFailure>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\snap_nb_sar_optical_s1.dim</file>
+      <formatName>BEAM-DIMAP</formatName>
+      <writeEntireTileRows>false</writeEntireTileRows>
+    </parameters>
+  </node>
+</graph>

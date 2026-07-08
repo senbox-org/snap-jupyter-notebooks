@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graph>
+  <version>1.0</version>
+  <node id="Read">
+    <operator>Read</operator>
+    <sources/>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandNames/>
+      <copyMetadata>true</copyMetadata>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\data\S2A_MSIL2A_20230827_delta_subset.dim</file>
+      <formatName/>
+      <geometryRegion/>
+      <maskNames/>
+      <pixelRegion/>
+      <polygonRegion/>
+      <useAdvancedOptions>false</useAdvancedOptions>
+      <vectorFile/>
+    </parameters>
+  </node>
+  <node id="Resample">
+    <operator>Resample</operator>
+    <sources>
+      <sourceProduct refid="Read"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <bandResamplings/>
+      <downsampling>Mean</downsampling>
+      <downsamplingMethod>First</downsamplingMethod>
+      <flagDownsamplingMethod>First</flagDownsamplingMethod>
+      <referenceBandName>B4</referenceBandName>
+      <resampleOnPyramidLevels>true</resampleOnPyramidLevels>
+      <resamplingPreset/>
+      <targetHeight/>
+      <targetResolution/>
+      <targetWidth/>
+      <upsampling>Bilinear</upsampling>
+      <upsamplingMethod>Nearest</upsamplingMethod>
+    </parameters>
+  </node>
+  <node id="Indices">
+    <operator>BandMaths</operator>
+    <sources>
+      <source refid="Resample"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <targetBands>
+        <targetBand>
+          <name>NDVI</name>
+          <expression>(B8 - B4) / (B8 + B4)</expression>
+          <type>float32</type>
+          <description/>
+          <unit/>
+          <no_data_value>NaN</no_data_value>
+        </targetBand>
+        <targetBand>
+          <name>NDWI</name>
+          <expression>(B3 - B8) / (B3 + B8)</expression>
+          <type>float32</type>
+          <description/>
+          <unit/>
+          <no_data_value>NaN</no_data_value>
+        </targetBand>
+      </targetBands>
+      <variables/>
+    </parameters>
+  </node>
+  <node id="Write">
+    <operator>Write</operator>
+    <sources>
+      <sourceProduct refid="Indices"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <clearCacheAfterRowWrite>false</clearCacheAfterRowWrite>
+      <deleteOutputOnFailure>true</deleteOutputOnFailure>
+      <file>E:\ESA\snap-jupyter-notebooks\resources\jupyter_notebooks\results\snap_nb_sar_optical_s2.dim</file>
+      <formatName>BEAM-DIMAP</formatName>
+      <writeEntireTileRows>false</writeEntireTileRows>
+    </parameters>
+  </node>
+</graph>
